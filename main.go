@@ -11,6 +11,7 @@ type Track struct {
 	Artist string `json:"artist,omitempty"`
 	Album  string `json:"album,omitempty"`
 	Image  string `json:"image,omitempty"`
+	Date   string `json:"date,omitempty"`
 }
 
 type Tracks []Track
@@ -30,6 +31,7 @@ func main() {
 			Artist: u.Artist.Name,
 			Album:  u.Album.Name,
 			Image:  u.Images[count-1].Url,
+			Date:   u.Date.Uts,
 		}
 		tracks = append(tracks, track)
 	}
