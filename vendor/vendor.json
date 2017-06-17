@@ -13,6 +13,12 @@
 			"path": "github.com/gorilla/mux",
 			"revision": "18fca31550181693b3a834a15b74b564b3605876",
 			"revisionTime": "2017-05-30T19:55:47Z"
+		},
+		{
+			"checksumSHA1": "KNByoy50X9vhUDIf2tgqUX5Eoys=",
+			"path": "github.com/shkh/lastfm-go/lastfm",
+			"revision": "125b747251b36e1e4a2f20391d674ff98a09a239",
+			"revisionTime": "2017-05-16T04:31:11Z"
 		}
 	],
 	"rootPath": "taster"
