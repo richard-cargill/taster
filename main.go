@@ -49,7 +49,7 @@ func main() {
 			Artist: u.Artist.Name,
 			Album:  u.Album.Name,
 			Image:  u.Images[count-1].Url,
-			Date:   u.Date.Uts,
+			Date:   u.Date.Date,
 		}
 		tracks = append(tracks, track)
 	}
