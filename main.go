@@ -52,5 +52,5 @@ func main() {
 
 	router.HandleFunc("/tracks", GetTracks).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(port, router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
