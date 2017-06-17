@@ -34,7 +34,10 @@ func main() {
 	}
 
 	api := lastfm.New(apiKey, apiSecret)
-	result, _ := api.User.GetRecentTracks(lastfm.P{"user": "catdoce"})
+	result, _ := api.User.GetRecentTracks(lastfm.P{
+		"user":  "catdoce",
+		"limit": 7,
+	})
 
 	router := mux.NewRouter()
 
