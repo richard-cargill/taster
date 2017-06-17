@@ -2,8 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/gorilla/mux"
 	"github.com/shkh/lastfm-go/lastfm"
+	"log"
+	"net/http"
+	"os"
 )
 
 type Track struct {
@@ -14,14 +17,25 @@ type Track struct {
 	Date   string `json:"date,omitempty"`
 }
 
-type Tracks []Track
+var tracks []Track
 
-var tracks Tracks
+func GetTracks(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(&tracks)
+}
 
 func main() {
-	api := lastfm.New("", "")
+	port := os.Getenv("PORT")
+	apiKey := os.Getenv("APIKEY")
+	apiSecret := os.Getenv("APISECRET")
 
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	api := lastfm.New(apiKey, apiSecret)
 	result, _ := api.User.GetRecentTracks(lastfm.P{"user": "catdoce"})
+
+	router := mux.NewRouter()
 
 	for _, u := range result.Tracks {
 		count := len(u.Images)
@@ -36,6 +50,7 @@ func main() {
 		tracks = append(tracks, track)
 	}
 
-	response, _ := json.Marshal(&tracks)
-	fmt.Println(string(response))
+	router.HandleFunc("/tracks", GetTracks).Methods("GET")
+
+	log.Fatal(http.ListenAndServe(port, router))
 }
