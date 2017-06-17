@@ -10,11 +10,12 @@ import (
 )
 
 type Track struct {
-	Name   string `json:"name,omitempty"`
-	Artist string `json:"artist,omitempty"`
-	Album  string `json:"album,omitempty"`
-	Image  string `json:"image,omitempty"`
-	Date   string `json:"date,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Artist    string `json:"artist,omitempty"`
+	Album     string `json:"album,omitempty"`
+	Image     string `json:"image,omitempty"`
+	Date      string `json:"date,omitempty"`
+	IsPlaying string `json:"isPlaying,omitempty"`
 }
 
 var tracks []Track
@@ -45,11 +46,12 @@ func main() {
 		count := len(u.Images)
 
 		track := Track{
-			Name:   u.Name,
-			Artist: u.Artist.Name,
-			Album:  u.Album.Name,
-			Image:  u.Images[count-1].Url,
-			Date:   u.Date.Date,
+			Name:      u.Name,
+			Artist:    u.Artist.Name,
+			Album:     u.Album.Name,
+			Image:     u.Images[count-1].Url,
+			Date:      u.Date.Date,
+			IsPlaying: u.NowPlaying,
 		}
 		tracks = append(tracks, track)
 	}
