@@ -20,6 +20,7 @@ type Track struct {
 var tracks []Track
 
 func GetTracks(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	json.NewEncoder(w).Encode(&tracks)
 }
 
